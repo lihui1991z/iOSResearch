@@ -25,7 +25,6 @@
     [super viewDidLoad];
     count = 0;
     [[LHAutoUpdateSystem defaultSystem] addAutoUpdateObject:self];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)autoUpdate
@@ -34,24 +33,12 @@
     self.displayLabel.text = [NSString stringWithFormat:@"%d",count];
     count++;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+//当controller pop的时候，该controller可以成功被销毁，不会引起循环引用的问题
 -(void)dealloc
 {
     NSLog(@"%s",__func__);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

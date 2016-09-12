@@ -111,7 +111,7 @@ NSString *kRegisterConsumerDefaultIdentifier = @"com.managementcenter.consumer.d
     }
 }
 
-//在子线程里做事情(定时器操作等)
+//在systemThread里做事情(定时器操作等)
 - (void)addEventIntoSystem:(LHBaseEvent *)event
 {
     if ([event isKindOfClass:[LHAutoEvent class]]) {

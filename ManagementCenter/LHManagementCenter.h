@@ -14,7 +14,7 @@
 //一个baseEvent在被消费者消费后，会自动从消费者队列里删除
 @interface LHBaseEvent : NSObject
 @property (nonatomic, copy) NSString *eventIdentifier;
-@property (nonatomic, strong) dispatch_queue_t consumeQueue;
+@property (nonatomic, strong) dispatch_queue_t consumeQueue;//在什么线程中消费
 
 + (NSString *)defaultEventIdentifier;
 - (void)addIntoManagementCenter:(LHManagementCenter *)manager;
@@ -32,8 +32,14 @@
 @end
 
 
-@interface LHManagementCenter : NSObject
 
+
+//依据消费者、生产者概念设计的一套自动管理系统
+//将通知消息抽象成事件对象，在事件对象中，可以自己扩充你需要的属性，相较于系统自带的通知中心，使用更加方便
+//生产者生产事件，管理中心负责传递事件，消费者消费事件
+
+//通过这种方式，增加一个中间人，可以减少因使用代理而带来的代码耦合性
+@interface LHManagementCenter : NSObject
 + (instancetype)defaultCenter;
 - (void)registerConsumer:(id<LHEventConsumerProtocol>)consumer withIdentifier:(NSString *)eventIdentifier;
 

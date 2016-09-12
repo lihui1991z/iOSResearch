@@ -28,9 +28,10 @@
     self.displayLabelUpdateTimeInterval = 3.0;
     [self autoUpdate];
     [[LHAutoUpdateSystem defaultSystem] addAutoUpdateObject:self];
-    // Do any additional setup after loading the view.
 }
 
+
+//虽然在LHAutoUpdateSystem里，使用0.5秒更新一次事件机制，但是在实际应用到每一个需要自动更新的对象时，你可以自己通过以下机制来设置这个对象的自动更新间隔时间
 -(BOOL)canUpdate
 {
     
